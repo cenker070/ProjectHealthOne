@@ -22,7 +22,7 @@ class view
         echo "naam : ". $Medicijnen->getNaam();
         echo "bijwerkingen". $Medicijnen->getBijwerkingen();
         echo  "voordelen : ". $Medicijnen->getVoordelen();
-        echo ""
+        echo "merk : ". + $Medicijnen->getVoordelen();
 
     }
 

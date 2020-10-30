@@ -1,8 +1,10 @@
 <?php
 
 
-namespace Model;
+namespace model;
 
+use model\Medicijnen;
+include_once ("model/Medicijnen");
 
 class model
 {
@@ -11,7 +13,7 @@ class model
 
     public function __construct()
     {
-        $this->Medicijnen = new Medicijnen("", "", "", "", "",);
+        $this->Medicijnen = new Medicijnen("10498543284", "ibrupofen", "misselijkheid", "stilt pijn", "kela");
     }
     public function getContent()
     {
@@ -19,7 +21,7 @@ class model
     }
     public function getMedicijnen()
     {
-        return $this->Medicijnen->getMedicijnen();
+        return $this->Medicijnen;
     }
 
 }
