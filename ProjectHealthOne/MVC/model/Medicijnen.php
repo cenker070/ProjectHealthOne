@@ -1,8 +1,10 @@
 <?php
 
 namespace model;
+use model\model;
+include_once("MVC/model/Model.php");
 
-class Medicijnen
+class medicijnen
 {
     private $id;
     private $naam;
