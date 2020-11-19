@@ -9,8 +9,8 @@ include_once ("controller/controller.php");
 
 
 
-
-$model = new model();
-$view = new view($model);
-$controller = new controller($model, $view);
-$view->viewContent();
+//
+//$model = new model();
+//$view = new view($model);
+//$controller = new controller($model, $view);
+//$view->viewContent();

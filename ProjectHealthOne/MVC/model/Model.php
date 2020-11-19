@@ -13,28 +13,18 @@ class model
         $this->database = new \PDO('mysql:host=localhost;dbname=drug', "root", "");
     }
 
-   public function insertGebruikers($gebruikersnaam, $wachtwoord)
+   public function inloggen ($gebruikersnaam, $wachtwoord)
    {
-       $query = $this->database->prepare ("INSERT INTO gebruikers(gebruikersnaam,
-wachtwoord) VALUES('ik','".shal('geheim') ."')");
-       if ($query->execute()) {
-           echo "de niewe gegevens zijn toegevoegd";
-       } else {
-           echo "er is een fout opgetreden";
-       }
-       }
-
-
-   public function getGebruikers($gebruikersnaam, $wachtwoord) {
-        if (isset($_POST['gebruikersnaam'])) {
-            $gebruikersnaam = $_POST('gebruikersnaam');
-            $wachtwoord = shal($_POST['wachtwoord']);
+       $this->makeConnection();
+        if (isset($gebruikersnaam)) {
+            $encwachtwoord = shal($wachtwoord);
             $query = $this->database->prepare("SELECT * FROM gebruikers WHERE gebruikersnaam =:user AND wachtwoord = :pass ");
             $query->bindParam("user", $gebruikersnaam);
-            $query->bindParam("pass", $wachtwoord);
+            $query->bindParam("pass", $encwachtwoord);
             $query->execute();
             if ($query->rowcount() == 1){
-                echo "juiste gegevens!";
+                $_SESSION['login'] = true;
+                $_SESSION['username'] = $gebruikersnaam;
             } else {
                 echo "onjuiste gegevns!";
             }

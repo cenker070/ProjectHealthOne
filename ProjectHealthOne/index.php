@@ -31,6 +31,11 @@ else if(isset($_POST['delete']))
     $controller->deleteMedicijnAction($_POST['delete']);
 }
 
+else if(isset($_POST['inloggen']))
+{
+    $controller->inloggenAction();
+}
+
 else
 {
     $controller->readMedicijnAction();
