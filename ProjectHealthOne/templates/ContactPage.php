@@ -23,7 +23,7 @@
         </li>
         <li><a href="MainPage.php">main</a></li>
         <li><a href="ContactPage.php">Contact</a></li>
-        <li style="float:right"><a href="#">login</a></li>
+        <li style="float:right"><a href="loginPage.php">login</a></li>
         <div class=""topnav> <input type="text" placeholder="Search.."></div>
     </ul>
 </nav>
