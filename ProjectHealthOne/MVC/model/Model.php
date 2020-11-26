@@ -17,7 +17,7 @@ class model
    {
        $this->makeConnection();
         if (isset($gebruikersnaam)) {
-            $encwachtwoord = shal($wachtwoord);
+            $encwachtwoord = hash("sha1",$wachtwoord);
             $query = $this->database->prepare("SELECT * FROM gebruikers WHERE gebruikersnaam =:user AND wachtwoord = :pass ");
             $query->bindParam("user", $gebruikersnaam);
             $query->bindParam("pass", $encwachtwoord);
@@ -32,17 +32,18 @@ class model
         }
    }
 
-    public function insertMedicijnen($naam,$merk,$bijwerkingen,$voordelen){
+    public function insertMedicijnen($naam,$merk,$bijwerkingen,$voordelen, $prijs){
         $this->makeConnection();
         if($naam !='')
         {
             $query = $this->database->prepare (
-                "INSERT INTO `Medicijnen` (`id`, `naam`, `merk`, `bijwerkingen`, `voordelen`) 
-                VALUES (NULL, :naam, :merk, :bijwerkingen, :voordelen)");
+                "INSERT INTO `Medicijnen` (`id`, `naam`, `merk`, `bijwerkingen`, `voordelen`, `prijs`) 
+                VALUES (NULL, :naam, :merk, :bijwerkingen, :voordelen, :prijs)");
             $query->bindParam(":naam", $naam);
             $query->bindParam(":merk", $merk);
             $query->bindParam(":bijwerkingen",$bijwerkingen);
             $query->bindParam(":voordelen", $voordelen);
+            $query->bindparam(":prijs", $prijs);
             $result = $query->execute();
             return $result;
         }
@@ -51,19 +52,20 @@ class model
 
 
     }
-    public function updateMedicijnen($id,$naam,$merk,$bijwerkingen,$voordelen){
+    public function updateMedicijnen($id,$naam,$merk,$bijwerkingen,$voordelen, $prijs){
         $this->makeConnection();
 
 
         $query = $this->database->prepare (
             "UPDATE `Medicijnen` SET `naam` = :naam, `merk`=:merk, `bijwerkingen` = :bijwerkingen,
-            `voordelen`=:voordelen
+            `voordelen`=:voordelen, `prijs` = :prijs,
             WHERE `Medicijnen`.`id` = :id ");
         $query->bindParam(":id", $id);
         $query->bindParam(":naam", $naam);
         $query->bindParam(":merk", $merk);
         $query->bindParam(":bijwerkingen",$bijwerkingen);
         $query->bindParam(":voordelen", $voordelen);
+        $query->bindparam(":prijs", $prijs);
         $result = $query->execute();
         return $result;
     }
@@ -79,7 +81,7 @@ class model
         }
         return null;
     }
-    public function selectMedicijnen($id){
+    public function selectMedicijn($id){
 
         $this->makeConnection();
         $selection = $this->database->prepare(

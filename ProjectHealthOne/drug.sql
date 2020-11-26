@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2020 at 07:30 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Gegenereerd op: 19 nov 2020 om 13:00
+-- Serverversie: 10.4.14-MariaDB
+-- PHP-versie: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,19 +26,26 @@ USE `drug`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gebruikers`
+-- Tabelstructuur voor tabel `gebruikers`
 --
 
 CREATE TABLE `gebruikers` (
   `id` int(9) NOT NULL,
-  `gebruikersnaam` int(255) NOT NULL,
-  `wachtwoord` int(255) NOT NULL
+  `gebruikersnaam` varchar(255) NOT NULL,
+  `wachtwoord` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `gebruikers`
+--
+
+INSERT INTO `gebruikers` (`id`, `gebruikersnaam`, `wachtwoord`) VALUES
+(1, 'admin', '9D4E1E23BD5B727046A9E3B4B7DB57BD8D6EE684');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `medicijnen`
+-- Tabelstructuur voor tabel `medicijnen`
 --
 
 CREATE TABLE `medicijnen` (
@@ -46,43 +53,41 @@ CREATE TABLE `medicijnen` (
   `naam` varchar(50) NOT NULL,
   `merk` varchar(50) NOT NULL,
   `bijwerkingen` varchar(100) NOT NULL,
-  `voordelen` varchar(100) NOT NULL
+  `voordelen` varchar(100) NOT NULL,
+  `prijs` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `medicijnen`
---
-
-INSERT INTO `medicijnen` (`id`, `naam`, `merk`, `bijwerkingen`, `voordelen`) VALUES
-(11, '', '', '', ''),
-(12, '', '', '', ' '),
-(15, '', '', '', ''),
-(19, '', '', '', ''),
-(24, '', '', '', ''),
-(25, '', '', '', ''),
-(26, '', '', '', ''),
-(27, 'diclofenac', 'diclofenac', 'pijnstiller, koortsverlagende werking, ontstekingsremmende werking. Goed bij acute pijn en chronisch', 'pijn op de borst, kortademingheid, zwarte of zeer donkere ontlasting, ophoesten van bloed, blauwe pl'),
-(28, '', '', 'pijn op de borst, kortademingheid, zwarte of zeer donkere ontlasting, ophoesten van bloed, blauwe pl', 'pijn op de borst, kortademingheid, zwarte of zeer donkere ontlasting, ophoesten van bloed, blauwe pl');
-
---
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `medicijnen`
+-- Indexen voor tabel `gebruikers`
+--
+ALTER TABLE `gebruikers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `medicijnen`
 --
 ALTER TABLE `medicijnen`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `medicijnen`
+-- AUTO_INCREMENT voor een tabel `gebruikers`
+--
+ALTER TABLE `gebruikers`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT voor een tabel `medicijnen`
 --
 ALTER TABLE `medicijnen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

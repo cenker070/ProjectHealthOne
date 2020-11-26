@@ -56,10 +56,84 @@ class View
                             font-size:24px;
                             padding:10px;
                             border-radius:10px;
-                        }
+                        }body {font-family: Arial, Helvetica, sans-serif;}
+        form {border: 3px solid #f1f1f1;}
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: dodgerblue;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+                        
                     </style>
                 </head>
-                <body>";
+                <body>
+<h2>Inloggen</h2>
+
+<form action=\"index.php\" method=\"post\">
+    <div class=\"imgcontainer\">
+        <img src=\"templates/images/loginAvatar.png\" alt=\"Avatar\" class=\"avatar\">
+    </div>
+
+    <div class=\"container\">
+        <label for=\"uname\"><b>Gebruikersnaam</b></label>
+        <input type=\"text\" placeholder=\"Enter Username\" name=\"uname\" required>
+
+        <label for=\"psw\"><b>Wachtwoord</b></label>
+        <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>
+
+        <button type=\"submit\" name='inloggen'>Login</button>
+        <label>
+            <input type=\"checkbox\" checked=\"checked\" name=\"remember\"> Remember me
+    </label>
+    </div>
+
+    <div class=\"container\" style=\"background-color:#f1f1f1\">
+        <span class=\"psw\">Forgot <a href=\"#\">password?</a></span>
+    </div>
+</form>
+
+</body>
+</html>";
+         if(isset($_SESSION['username'])) {echo $_SESSION['username'];}
+
         echo "<h2>Medicijnen</h2> <form action='index.php' method='post'>
                                <input type='hidden' name='showForm' value='0'>
                                <input type='submit' value='toevoegen'/>
@@ -74,6 +148,7 @@ class View
                                       $Medicijn->merk<br />
                                       $Medicijn->bijwerkingen<br />
                                       $Medicijn->voordelen<br />
+                                      $prijs->prijs<br />
                                       <form action='index.php' method='post'>
                                        <input type='hidden' name='showForm' value='$Medicijn->id'><input type='submit' value='wijzigen'/></form>
                                         <form action='index.php' method='post'>
@@ -101,7 +176,7 @@ class View
         </head><body>
         <h2>Formulier Medicijnengegevens</h2>";
         if (isset($Medicijn)) {
-            echo "<form method='post' >
+            echo "<form method='post'>
         <table>
             <tr><td></td><td>
                 <input type=\"hidden\" name=\"id\" value='$id'/></td></tr>
@@ -116,6 +191,10 @@ class View
             <tr><td>
                 <label for=\"voordelen\">voordelen</label></td><td>
                 <input type=\"text\" name=\"voordelen\" value= '" . $Medicijn->voordelen . "'/></td></tr>
+            <tr><td>
+            <tr><td>
+                <label for=\"prijs\">prijs</label></td><td>
+                <input type=\"text\" name=\"prijs\" value= '" . $prijs->prijs . "'/></td></tr>
             <tr><td>
             <tr><td>
                 <input type='submit' name='update' value='opslaan'></td><td>
@@ -140,6 +219,9 @@ class View
             <tr><td>
                 <label for=\"voordelen\">voordelen</label></td><td>
                 <input type=\"text\" name=\"voordelen\" value= ''/></td></tr>
+                <tr><td>
+                <label for=\"prijs\">prijs</label></td><td>
+                <input type=\"text\" name=\"prijs\" value= ''/></td></tr>
                 <input type='submit' name='create' value='opslaan'></td><td>
             </td></tr></table>
             </form>

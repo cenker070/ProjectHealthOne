@@ -11,6 +11,7 @@ class medicijnen
     private $merk;
     private $bijwerkingen;
     private $voordelen;
+    private $prijs;
 
     public function __get($property) {
         if (property_exists($this, $property)) {
