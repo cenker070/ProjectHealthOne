@@ -26,7 +26,7 @@ class model
                 $_SESSION['login'] = true;
                 $_SESSION['username'] = $gebruikersnaam;
             } else {
-                echo "onjuiste gegevns!";
+                echo "onjuiste gegevens!";
             }
             echo "<br>";
         }

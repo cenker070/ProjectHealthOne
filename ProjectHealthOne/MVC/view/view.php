@@ -132,35 +132,76 @@ class View
 
 </body>
 </html>";
-         if(isset($_SESSION['username'])) {echo $_SESSION['username'];}
+        if (isset($_SESSION['username'])) {
+            echo $_SESSION['username'];
 
-        echo "<h2>Medicijnen</h2> <form action='index.php' method='post'>
-                               <input type='hidden' name='showForm' value='0'>
-                               <input type='submit' value='toevoegen'/>
-                               </form></div></body></html>";
-        if ($Medicijnen !== null) {
             echo "
+<html>
+<head>
+    <title>HealthOne</title>
+    <meta charset=\"UTF-8\">
+    <link rel=\"stylesheet\" href=\"templates/CSS/mainpage.css\">
+</head>
+
+<body>
+    <header>
+        LOGO VAN HEALTHONE
+    </header>
+    <nav>
+        <ul>
+            <li class=\"dropdown\">
+                <a href=\"javascript:void(0)\" class=\"dropbtn\">Menu</a>
+                <div class=\"dropdown-content\">
+                    <a href=\"MainPage.php\">main</a>
+                    <a href=\"ContactPage.php\">contact</a>
+
+                    <a href=\"loginPage.php\">login</a>
+            </div>
+            </li>
+            <li><a href=\"MainPage.php\">main</a></li>
+            <li><a href=\"ContactPage.php\">Contact</a></li>
+            <li style=\"float:right\"><a href=\"loginPage.php\">login</a></li>
+            <li class=\"topnav\"><input type=\"text\" placeholder=\"Search..\"></li>
+        </ul>
+    </nav>
+    <div id=\"maintekst\">
+    <h2>Medicijnen</h2> <form action='index.php' method='post'>
+    <input type='hidden' name='showForm' value='0'>
+    <input type='submit' value='toevoegen'/>
+</form>
+
+    </div>
+<footer>
+            healthOne
+</footer>
+</body>
+</html>";
+
+        }
+                
+            if ($Medicijnen !== null) {
+                echo "
                         <div id=\"Medicijnen\">";
-            foreach ($Medicijnen as $Medicijn) {
-                echo "<div class=\"Medicijn\">
+                foreach ($Medicijnen as $Medicijn) {
+                    echo "<div class=\"Medicijn\">
                                        
                                       $Medicijn->naam<br />
                                       $Medicijn->merk<br />
                                       $Medicijn->bijwerkingen<br />
                                       $Medicijn->voordelen<br />
-                                      $prijs->prijs<br />
+                                      $Medicijn->prijs<br />
                                       <form action='index.php' method='post'>
                                        <input type='hidden' name='showForm' value='$Medicijn->id'><input type='submit' value='wijzigen'/></form>
                                         <form action='index.php' method='post'>
                                        <input type='hidden' name='delete' value='$Medicijn->id'><input type='submit' value='verwijderen'/></form>
                                     </div>";
+                }
+            } else {
+                echo "Geen medicijnen gevonden";
             }
-        } else {
-            echo "Geen medicijnen gevonden";
-        }
+
 
     }
-
     public
     function showFormMedicijnen($id = null)
     {
